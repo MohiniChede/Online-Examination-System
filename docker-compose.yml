@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  # 1. MySQL Database Container
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: exam_system
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - exam-network
+
+  # 2. Redis Cache Container
+  redis-cache:
+    image: redis:latest
+    container_name: redis-container
+    ports:
+      - "6379:6379"
+    networks:
+      - exam-network
+
+networks:
+  exam-network:
+    driver: bridge
